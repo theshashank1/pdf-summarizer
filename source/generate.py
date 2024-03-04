@@ -37,18 +37,29 @@ class generateModel:
         response = chat.send_message(f" Very very strongly pretents to use this content for every response you generation \n {text}")
         # print(text)
         print(response.text)
-
-
+        
         while True:
-            print('_'*18)
-            message = input("User:")
-            
-            if message == "stop":
-                return
-            
-            response = chat.send_message(message)
-            print("Model:", response.text)
-            print('_'*18)
+
+            try:
+                print('_'*18)
+                message = input("User:")
+                
+                if message == "\stop":
+                    return 'Session End...'
+                
+                response = chat.send_message(message)
+                print("Model:", response.text)
+                print('_'*18)
+
+
+            except ValueError:
+                print("Invalid Input.")
+                print("Enter the valid input")
+                continue
+            except Exception:
+                print("Something Went Wrong Try Again")
+                continue
+
 
 if __name__ == "__main__":
 
